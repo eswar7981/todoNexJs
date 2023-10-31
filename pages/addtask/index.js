@@ -1,11 +1,30 @@
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react'
 import Task from '@/components/Pages/Task'
-const addtask = () => {
+function addtask(){
+ 
+
+    async function addData(data){
+        const response=await fetch('addtask/api/addTask',
+        {
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                'Content-Type':'application/json'
+            }   
+        })
+
+        const dat=await response.json()
+
+        console.log(dat)
+
+
+    }
+
   return (
     <div>
-        <Task></Task>
+        <Task  getData={addData}></Task>
     </div>
   )
 }

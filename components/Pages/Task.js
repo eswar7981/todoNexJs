@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { unmountComponentAtNode } from "react-dom";
 import { useRouter } from "next/router";
 
-const Task = () => {
+const Task = (props) => {
     const router=useRouter()
   const [tasks, addTasks] = useState([]);
   const [task, addTask] = useState({ taskName: "" });
@@ -16,6 +16,7 @@ const Task = () => {
   };
 
   const submitHandler = (e) => {
+    
     addTasks([...tasks, task]);
     addTask({ taskName: "" });
   };
@@ -42,8 +43,8 @@ const Task = () => {
   };
 
   const tasksCompletedHandler=(e)=>{
+    localStorage.setItem('todos',tasks)
     e.preventDefault()
-
     router.push('addtask/completed')
   }
 
